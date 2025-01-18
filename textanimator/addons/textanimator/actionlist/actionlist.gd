@@ -15,6 +15,7 @@ func ClearList():
 func AddAction(action: Action):
 	actions.append(action)
 
+# Update all actions in the list, removing those that are finished
 func UpdateList(dt: float):
 	# Update each action in the list
 	for i in actions.size():
