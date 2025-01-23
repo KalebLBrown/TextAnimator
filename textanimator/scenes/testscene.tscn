@@ -10,6 +10,6 @@
 offset_right = 334.0
 offset_bottom = 173.0
 bbcode_enabled = true
-text = "BBCode [color=green]test[/color]"
 scroll_active = false
 script = ExtResource("1_u38w7")
+rawText = "Big old test!"

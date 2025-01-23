@@ -2,6 +2,7 @@
 # There are three functions that are made to be overridden
 
 class_name Action
+extends RefCounted
 
 # Base variables
 
