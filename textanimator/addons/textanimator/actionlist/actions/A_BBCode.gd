@@ -1,21 +1,21 @@
 class_name A_BBCode
 extends Action
 
-var _text: String
+var _tag = ST_AnimatedTag
 
 var _label: AnimatedText
 
-func _init(setTime, setDelay, text: String, label: AnimatedText):
+func _init(setTime, setDelay, tag: ST_AnimatedTag, label: AnimatedText):
 	timerMax = setTime
 	timer = timerMax
 	delay = setDelay
 	
-	_text = text
+	_tag = tag
 	_label = label
 
 # Override for anything that needs to be initialised
 func OnStart():
-	_label.ChangeText(_text)
+	_label.AddTag(_tag)
 	pass
 
 # Override for anything that needs to be done on update
@@ -24,4 +24,5 @@ func TakeAction():
 
 # Override for anything that needs to be cleaned up
 func OnEnd():
+	_label.RemoveTag(_tag)
 	pass
