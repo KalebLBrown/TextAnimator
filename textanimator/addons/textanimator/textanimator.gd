@@ -2,11 +2,17 @@
 extends EditorPlugin
 
 
+const editorAddon = preload("res://addons/textanimator/scenes/TextAnimatorTool.tscn")
+
+var dockedScene
+
 func _enter_tree():
-	# Initialization of the plugin goes here.
+	dockedScene = editorAddon.instantiate()
+	add_control_to_dock(DOCK_SLOT_LEFT_BL, dockedScene)
 	pass
 
 
 func _exit_tree():
-	# Clean-up of the plugin goes here.
+	remove_control_from_docks(dockedScene)
+	dockedScene.free()
 	pass

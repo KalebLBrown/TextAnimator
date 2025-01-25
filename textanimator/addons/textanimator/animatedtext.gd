@@ -152,7 +152,6 @@ func _process(delta: float) -> void:
 	if(timer < 0.0):
 		timer = timerMax
 		
-		# TODO: Finish this! Add a dictionary for stuff! Add thigns!
 		var tags = ["b", "i", "s", "u", "code"]
 		var start = randi_range(0, len(rawText) - 1)
 		var end = randi_range(start, len(rawText))
