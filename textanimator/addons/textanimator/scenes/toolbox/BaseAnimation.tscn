@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://rubic7dxi27x"]
+
+[ext_resource type="Script" path="res://addons/textanimator/scenes/toolbox/base_animation.gd" id="1_aonjn"]
+
+[node name="BaseAnimation" type="Button"]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 141.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BBCode Animation"
+icon_alignment = 1
+script = ExtResource("1_aonjn")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

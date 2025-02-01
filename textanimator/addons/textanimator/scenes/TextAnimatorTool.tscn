@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://j2geoo4y05s1"]
-
-[node name="TextAnimatorTool" type="HFlowContainer"]
-anchors_preset = -1
-anchor_right = 0.384
-anchor_bottom = 0.263
-offset_right = -442.368
-offset_bottom = -170.424

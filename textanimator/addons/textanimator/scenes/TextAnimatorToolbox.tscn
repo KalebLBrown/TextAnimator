@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://f2bohruqtcga"]
+
+[ext_resource type="PackedScene" uid="uid://rubic7dxi27x" path="res://addons/textanimator/scenes/toolbox/BaseAnimation.tscn" id="1_xuajh"]
+
+[node name="TextAnimatorToolbox" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BaseAnimation" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
+layout_mode = 2
+
+[node name="BaseAnimation2" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
+layout_mode = 2
+
+[node name="BaseAnimation3" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
+layout_mode = 2
+
+[node name="BaseAnimation4" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
+layout_mode = 2

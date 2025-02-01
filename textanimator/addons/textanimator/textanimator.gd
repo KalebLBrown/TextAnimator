@@ -1,18 +1,29 @@
 @tool
 extends EditorPlugin
 
+# For toolbox
+const toolboxScene = preload("res://addons/textanimator/scenes/TextAnimatorToolbox.tscn")
+var toolboxInstance
 
-const editorAddon = preload("res://addons/textanimator/scenes/TextAnimatorTool.tscn")
+#  For Animation interface
+const animatorScene = preload("res://addons/textanimator/scenes/TextAnimatorAnimationViewer.tscn")
+var animatorInstance
 
-var dockedScene
 
 func _enter_tree():
-	dockedScene = editorAddon.instantiate()
-	add_control_to_dock(DOCK_SLOT_LEFT_BL, dockedScene)
-	pass
+	# Add relevant tools to docks
+	toolboxInstance = toolboxScene.instantiate()
+	add_control_to_dock(DOCK_SLOT_LEFT_BR, toolboxInstance)
+	
+	animatorInstance = animatorScene.instantiate()
+	add_control_to_bottom_panel(animatorInstance, "Text Animator")
 
 
 func _exit_tree():
-	remove_control_from_docks(dockedScene)
-	dockedScene.free()
-	pass
+	# Remove relevant tools from docks
+	remove_control_from_docks(toolboxInstance)
+	toolboxInstance.queue_free()
+	
+	remove_control_from_bottom_panel(animatorInstance)
+	animatorInstance.queue_free()
+	
