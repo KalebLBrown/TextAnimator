@@ -5,7 +5,7 @@ var _tag = ST_AnimatedTag
 
 var _label: AnimatedText
 
-func _init(setTime, setDelay, tag: ST_AnimatedTag, label: AnimatedText):
+func _init(setTime : float, setDelay : float, tag: ST_AnimatedTag, label: AnimatedText):
 	timerMax = setTime
 	timer = timerMax
 	delay = setDelay

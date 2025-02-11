@@ -1,10 +1,13 @@
 # NOTE: NEVER change the text field directly, use the functions provided
 
-#@tool
+@tool
 class_name AnimatedText
 extends RichTextLabel
 
 var actionlist: ActionList = ActionList.new()
+
+# TODO: turn this into a factory that holds information for creating actions
+var startingActions : Array[Action] = []
 
 ## The raw string of the animated text
 ## NOTE: Do not include BBCode tags in this text, it can cause problems for
@@ -115,6 +118,10 @@ func ChangeText(newText: String) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		# Code to execute in editor
+		return
+	
 	# Since the actionlist is a node, we have to add it as a child at runtime
 	add_child(actionlist)
 	
@@ -126,7 +133,13 @@ func _ready() -> void:
 	for n in len(text):
 		tags.append([])
 	
+	# Add all the actions that the text should start with
+	for act in startingActions:
+		actionlist.AddAction(act)
+		print("added action at start!")
 	
+	# Clear the starting action list so they can be removed later
+	startingActions.clear()
 	
 #region Testing
 	#var dict = {"hi": 2, "world": 4, "gen": 6, "kenobi": 8}
@@ -134,28 +147,15 @@ func _ready() -> void:
 		#var abb: A_BBCode = A_BBCode.new(0, dict[key], key, self)
 		#actionlist.AddAction(abb)
 	
-	var bbtag: ST_AnimatedTag = ST_AnimatedTag.new("b", 0, 3)
-	AddTag(bbtag)
-	var bbtag2: ST_AnimatedTag = ST_AnimatedTag.new("u", 5, 11)
-	AddTag(bbtag2)
-	var bbtag3: ST_AnimatedTag = ST_AnimatedTag.new("s", 7, 10)
-	AddTag(bbtag3)
+	#var bbtag: ST_AnimatedTag = ST_AnimatedTag.new("b", 0, 3)
+	#AddTag(bbtag)
+	#var bbtag2: ST_AnimatedTag = ST_AnimatedTag.new("u", 5, 11)
+	#AddTag(bbtag2)
+	#var bbtag3: ST_AnimatedTag = ST_AnimatedTag.new("s", 7, 10)
+	#AddTag(bbtag3)
 #endregion
 	
 
-var timer = 0.0
-var timerMax = 1.0
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	timer -= delta
-	if(timer < 0.0):
-		timer = timerMax
-		
-		var tags = ["b", "i", "s", "u", "code"]
-		var start = randi_range(0, len(rawText) - 1)
-		var end = randi_range(start, len(rawText))
-		var bbtag: ST_AnimatedTag = ST_AnimatedTag.new(tags.pick_random(), start, end)
-		var abb: A_BBCode = A_BBCode.new(10, 0, bbtag, self)
-		actionlist.AddAction(abb)
 	pass

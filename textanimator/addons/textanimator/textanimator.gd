@@ -11,6 +11,9 @@ var animatorInstance
 
 
 func _enter_tree():
+	# Add the new type
+	add_custom_type("AnimatedText", "RichTextLabel", preload("res://addons/textanimator/animatedtext.gd"), preload("res://icon.svg"))
+	
 	# Add relevant tools to docks
 	toolboxInstance = toolboxScene.instantiate()
 	add_control_to_dock(DOCK_SLOT_LEFT_BR, toolboxInstance)
@@ -20,6 +23,9 @@ func _enter_tree():
 
 
 func _exit_tree():
+	# Remove the new type
+	remove_custom_type("AnimatedText")
+	
 	# Remove relevant tools from docks
 	remove_control_from_docks(toolboxInstance)
 	toolboxInstance.queue_free()
