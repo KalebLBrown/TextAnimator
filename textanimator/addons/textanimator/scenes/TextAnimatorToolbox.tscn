@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://f2bohruqtcga"]
+[gd_scene load_steps=3 format=3 uid="uid://f2bohruqtcga"]
 
 [ext_resource type="PackedScene" uid="uid://rubic7dxi27x" path="res://addons/textanimator/scenes/toolbox/BaseAnimation.tscn" id="1_xuajh"]
+[ext_resource type="PackedScene" uid="uid://dhas86f4c6jxw" path="res://addons/textanimator/scenes/toolbox/ClearAnimationsButton.tscn" id="2_n46yc"]
 
 [node name="TextAnimatorToolbox" type="PanelContainer"]
 anchors_preset = 15
@@ -13,14 +14,19 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 5
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "asdfasdfasdfa"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "asdf"
+
 [node name="BaseAnimation" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
 layout_mode = 2
 
-[node name="BaseAnimation2" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
-layout_mode = 2
-
-[node name="BaseAnimation3" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
-layout_mode = 2
-
-[node name="BaseAnimation4" parent="VBoxContainer" instance=ExtResource("1_xuajh")]
+[node name="ClearAnimationsButton" parent="VBoxContainer" instance=ExtResource("2_n46yc")]
 layout_mode = 2

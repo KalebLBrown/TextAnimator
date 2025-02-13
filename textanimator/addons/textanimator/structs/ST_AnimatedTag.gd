@@ -1,13 +1,14 @@
+@tool
 class_name ST_AnimatedTag
-extends RefCounted
+extends Resource
 
-var tag: String
-var start: int
-var end: int
-var hasOptions: bool
-var options: Array
+@export var tag: String
+@export var start: int
+@export var end: int
+@export var hasOptions: bool
+@export var options: Array
 
-func _init(_tag: String, _start: int, _end: int, _hasOptions: bool = false, _options: Array = Array()):
+func _init(_tag: String = "", _start: int = 0, _end: int = 1, _hasOptions: bool = false, _options: Array = Array()):
 	tag = _tag
 	start = _start
 	end = _end

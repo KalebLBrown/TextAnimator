@@ -94,3 +94,15 @@ func CalcInterpolation():
 			return -(cos(PI * lerp) - 1.0) / 2.0
 		_:
 			return 0.0
+
+# TODO: Figure out a better way to do keys than strings, maybe by attribute names? Not sure
+# Override this function to enable savable actions
+func GetActionFactory() -> ActionFactory:
+	var res : ActionFactory
+	res.ActionScript = self.get_script()
+	res.Parameters.append(timerMax)
+	return res
+
+static func MakeFromFactory(factory: ActionFactory) -> Action:
+	var act: Action = Action.new(factory.Parameters[0])
+	return act

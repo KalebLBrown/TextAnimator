@@ -11,11 +11,15 @@ func testing():
 	if(selected.size() == 1):
 		if(selected[0] is AnimatedText):
 			print("selected text!")
+			
+			# Set up all variables
 			var proxy : AnimatedText = selected[0]
-			var bbtag : ST_AnimatedTag = ST_AnimatedTag.new("b", 0, 3)
-			var action : A_BBCode = A_BBCode.new(3.0, 4.0, bbtag, proxy)
-			print(proxy.get_property_list())
-			proxy.startingActions.append(action)
+			var bbtag : ST_AnimatedTag = ST_AnimatedTag.new("b", 0, 5)
+			var action : A_BBCode = A_BBCode.new(3.0, 1.0, bbtag, proxy)
+			var res : ActionFactory = action.GetActionFactory()
+			
+			# Add it to the list and notify the editor something's changed
+			proxy.AddStartingAction(res)
 	
 
 func _doOnClicked(event: InputEventMouseButton):
@@ -32,7 +36,6 @@ func _doOnClicked(event: InputEventMouseButton):
 		clicked = true
 		testing()
 
-
 func _doOnDragged(event: InputEventMouseMotion):
 	if(clicked):
 		print("dragging!")
@@ -43,13 +46,11 @@ func _input(event):
 			_doOnClicked(event)
 		"InputEventMouseMotion":
 			_doOnDragged(event)
-	
 
 func _on_mouse_entered():
 	hovered = true
-	print("hovered!")
-
+	#print("hovered!")
 
 func _on_mouse_exited():
 	hovered = false
-	print("no longer hovered!")
+	#print("no longer hovered!")

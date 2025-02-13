@@ -7,8 +7,12 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="AnimatedText" type="RichTextLabel" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = -1
+anchor_right = 0.994083
+anchor_bottom = 0.999864
+offset_right = -0.18399
+offset_bottom = 0.0879974
+bbcode_enabled = true
 script = ExtResource("1_u38w7")
 rawText = "I am a pro gamer"
 metadata/_edit_use_anchors_ = true

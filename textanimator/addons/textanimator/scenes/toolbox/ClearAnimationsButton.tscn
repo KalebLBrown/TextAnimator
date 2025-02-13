@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhas86f4c6jxw"]
+
+[ext_resource type="Script" path="res://addons/textanimator/scenes/toolbox/clear_animations_button.gd" id="1_lsqai"]
+
+[node name="ClearAnimationsButton" type="Button"]
+offset_right = 115.0
+offset_bottom = 24.0
+text = "Clear Animations"
+script = ExtResource("1_lsqai")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

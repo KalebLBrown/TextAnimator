@@ -6,8 +6,25 @@ extends RichTextLabel
 
 var actionlist: ActionList = ActionList.new()
 
-# TODO: turn this into a factory that holds information for creating actions
-var startingActions : Array[Action] = []
+# List of Action Factories that are added to the action list
+@export var startingActions : Array[ActionFactory] = []
+
+# Add a starting action at edit time
+func AddStartingAction(factory: ActionFactory) -> void:
+	var newArray = startingActions.duplicate()
+	newArray.append(factory)
+	startingActions = newArray
+	notify_property_list_changed()
+
+func RemoveStartingAction(factory: ActionFactory) -> void:
+	var newArray = startingActions.duplicate()
+	newArray.erase(factory)
+	startingActions = newArray
+	notify_property_list_changed()
+
+func ClearStartingActions() -> void:
+	startingActions.clear()
+	notify_property_list_changed()
 
 ## The raw string of the animated text
 ## NOTE: Do not include BBCode tags in this text, it can cause problems for
@@ -119,7 +136,7 @@ func ChangeText(newText: String) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		# Code to execute in editor
+		# If in editor, don't do anything
 		return
 	
 	# Since the actionlist is a node, we have to add it as a child at runtime
@@ -134,26 +151,16 @@ func _ready() -> void:
 		tags.append([])
 	
 	# Add all the actions that the text should start with
-	for act in startingActions:
+	for res in startingActions:
+		# Construct the action
+		var act : Action = res.ActionScript.MakeFromFactory(res)
+		
+		if("_label" in act):
+			act._label = self
+		
+		print(res.ActionScript)
+		print(res.Parameters)
 		actionlist.AddAction(act)
-		print("added action at start!")
-	
-	# Clear the starting action list so they can be removed later
-	startingActions.clear()
-	
-#region Testing
-	#var dict = {"hi": 2, "world": 4, "gen": 6, "kenobi": 8}
-	#for key in dict:
-		#var abb: A_BBCode = A_BBCode.new(0, dict[key], key, self)
-		#actionlist.AddAction(abb)
-	
-	#var bbtag: ST_AnimatedTag = ST_AnimatedTag.new("b", 0, 3)
-	#AddTag(bbtag)
-	#var bbtag2: ST_AnimatedTag = ST_AnimatedTag.new("u", 5, 11)
-	#AddTag(bbtag2)
-	#var bbtag3: ST_AnimatedTag = ST_AnimatedTag.new("s", 7, 10)
-	#AddTag(bbtag3)
-#endregion
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
