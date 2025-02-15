@@ -135,16 +135,16 @@ func ChangeText(newText: String) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Set the text to the rawText
+	# TODO: Change this?
+	text = rawText
+	
 	if Engine.is_editor_hint():
 		# If in editor, don't do anything
 		return
 	
 	# Since the actionlist is a node, we have to add it as a child at runtime
 	add_child(actionlist)
-	
-	# Set the text to the rawText
-	# TODO: Change this?
-	text = rawText
 	
 	# Fill out the array to start
 	for n in len(text):
@@ -165,4 +165,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Engine.is_editor_hint():
+		# If in editor, set text to rawtext
+		text = rawText
+		return
+	

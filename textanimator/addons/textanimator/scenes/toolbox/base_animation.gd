@@ -10,16 +10,23 @@ func testing():
 	
 	if(selected.size() == 1):
 		if(selected[0] is AnimatedText):
-			print("selected text!")
+			
+			var tag : String = $"../TagBox/TagEdit".text
+			var start : int = int($"../CharacterBox/StartEdit".text)
+			var end : int = int($"../CharacterBox/EndEdit".text)
+			var time : float = float($"../TimeBox/TimeEdit".text)
+			var delay: float = float($"../TimeBox/DelayEdit".text)
 			
 			# Set up all variables
 			var proxy : AnimatedText = selected[0]
-			var bbtag : ST_AnimatedTag = ST_AnimatedTag.new("b", 0, 5)
-			var action : A_BBCode = A_BBCode.new(3.0, 1.0, bbtag, proxy)
+			var bbtag : ST_AnimatedTag = ST_AnimatedTag.new(tag, start, end)
+			var action : A_BBCode = A_BBCode.new(time, delay, bbtag, proxy)
 			var res : ActionFactory = action.GetActionFactory()
 			
 			# Add it to the list and notify the editor something's changed
 			proxy.AddStartingAction(res)
+			
+			print("Added Animation")
 	
 
 func _doOnClicked(event: InputEventMouseButton):
